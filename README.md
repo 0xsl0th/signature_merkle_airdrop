@@ -41,7 +41,6 @@ This project implements a token airdrop mechanism where:
 ## Prerequisites
 
 - Foundry
-- Node.js & npm
 - zkSync CLI (for zkSync deployment)
 
 ## Installation
