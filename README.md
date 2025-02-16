@@ -1,66 +1,91 @@
-## Foundry
+# Merkle Airdrop Project
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+A Solidity implementation of a token airdrop system using Merkle proofs and EIP-712 signatures for secure and gas-efficient token distribution.
 
-Foundry consists of:
+## Overview
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+This project implements a token airdrop mechanism where:
 
-## Documentation
+1. Whitelisted users can claim their allocated tokens
+2. Claims require both a valid Merkle proof and a signed message
+3. Each address can only claim once
+4. The system works on both Ethereum and zkSync Era networks
 
-https://book.getfoundry.sh/
+## Flow Charg
+
+![Airdrop Flow Chart](images/flow-chart.png)
+
+## Key Features
+
+- ERC20 token (BagelToken) for distribution
+- Merkle tree-based verification of eligible addresses
+- EIP-712 signature verification for secure claims
+- zkSync Era compatibility
+- Comprehensive test suite
+- Automated deployment scripts
+
+## Project Structure
+
+```
+├── src/
+│   ├── BagelToken.sol       # ERC20 token contract
+│   └── MerkleAirdrop.sol    # Main airdrop contract
+├── script/
+│   ├── GenerateInput.s.sol  # Creates Merkle tree input
+│   ├── MakeMerkle.s.sol     # Generates Merkle proofs
+│   └── Interact.s.sol       # Contract interaction scripts
+└── test/
+    └── MerkleAirdrop.t.sol  # Test suite
+```
+
+## Prerequisites
+
+- Foundry
+- Node.js & npm
+- zkSync CLI (for zkSync deployment)
+
+## Installation
+
+```bash
+forge install
+```
 
 ## Usage
 
-### Build
+1. Generate Merkle tree input and proofs:
 
-```shell
-$ forge build
+```bash
+make merkle
 ```
 
-### Test
+2. Deploy contracts:
 
-```shell
-$ forge test
+```bash
+# For local testing
+make anvil
+make deploy
+
+# For zkSync
+make zk-anvil
+make deploy-zk
 ```
 
-### Format
+3. Claim tokens:
 
-```shell
-$ forge fmt
+```bash
+make claim
 ```
 
-### Gas Snapshots
+## Testing
 
-```shell
-$ forge snapshot
+```bash
+# Run Ethereum tests
+forge test
+
+# Run zkSync tests
+make zktest
 ```
 
-### Anvil
+## License
 
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+MIT

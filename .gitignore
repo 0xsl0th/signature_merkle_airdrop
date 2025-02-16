@@ -12,3 +12,11 @@ docs/
 
 # Dotenv file
 .env
+
+foundry.toml
+zkout/
+
+lib/
+.cache/
+
+anvil-zksync.log
