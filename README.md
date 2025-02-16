@@ -11,7 +11,7 @@ This project implements a token airdrop mechanism where:
 3. Each address can only claim once
 4. The system works on both Ethereum and zkSync Era networks
 
-## Flow Charg
+## Flow Chart
 
 ![Airdrop Flow Chart](images/flow-chart.png)
 
